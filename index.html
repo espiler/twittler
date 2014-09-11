@@ -35,6 +35,12 @@
         var $body = $("#tweets");
         $body.html('');
 
+        $('#douglascalhoun').click(function(){displayUserTweets("douglascalhoun")});
+        $('#mracus').click(function(){displayUserTweets("mracus")});
+        $('#shawndrost').click(function(){displayUserTweets("shawndrost")});
+        $('#sharksforcheap').click(function(){displayUserTweets("sharksforcheap")});
+
+
         function displayTweets() {
 
           var index = streams.home.length - 1;
@@ -47,9 +53,23 @@
           }
         }
 
+
+        function displayUserTweets(user) {
+          $body.html('');
+          clearInterval(displayTweetId);
+          var index = streams.users[user].length - 1;
+          while(index >= 0){
+            var tweet = streams.users[user][index];
+            var $tweet = $('<div></div>');
+            $tweet.html(moment(tweet.created_at).fromNow() + "<br/> @" + tweet.user + ": " + tweet.message);
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+        }
+
         displayTweets();
 
-        setInterval(displayTweets,3000);
+        var displayTweetId = setInterval(displayTweets,3000);
 
       });
 
