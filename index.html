@@ -34,10 +34,10 @@
 
       $(document).ready(function(){
 
-        var runningTweet;
         var $body = $("#tweets");
         $body.html('');
-
+        var runningTweet;
+        var runningTweet2;
 
         $('#allFriends').click(function(){
           displayTweets();
@@ -46,6 +46,7 @@
         });
         $('#douglascalhoun').click(function(){
           displayUserTweets("douglascalhoun");
+          setInterval(displayUserTweets("douglascalhoun"), 3000);
           $("li").removeClass("active");
           $(this).addClass("active");
         });
@@ -77,6 +78,7 @@
             $tweet.appendTo($body);
             index -= 1;
           }
+        runningTweet = setInterval(displayTweets,3000);
         }
 
 
@@ -91,11 +93,10 @@
             $tweet.appendTo($body);
             index -= 1;
           }
+          runningTweet = setInterval(function() {displayUserTweets(user)}, 3000)
         }
 
         displayTweets();
-
-        runningTweet = setInterval(displayTweets,3000);
 
       });
 
