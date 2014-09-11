@@ -19,6 +19,7 @@
     
     <div id="buttons" class="row span2">
       <ul class="following nav nav-pills nav-stacked">
+        <li id="allFriends" class="active"><a> All Friends </a></li>
         <li id="douglascalhoun"><a> @douglascalhoun </a></li>
         <li id="mracus"><a> @mracus </a></li>
         <li id="shawndrost"><a> @shawndrost </a></li>
@@ -32,17 +33,42 @@
     <script>
 
       $(document).ready(function(){
+
+        var runningTweet;
         var $body = $("#tweets");
         $body.html('');
 
-        $('#douglascalhoun').click(function(){displayUserTweets("douglascalhoun")});
-        $('#mracus').click(function(){displayUserTweets("mracus")});
-        $('#shawndrost').click(function(){displayUserTweets("shawndrost")});
-        $('#sharksforcheap').click(function(){displayUserTweets("sharksforcheap")});
+
+        $('#allFriends').click(function(){
+          displayTweets();
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#douglascalhoun').click(function(){
+          displayUserTweets("douglascalhoun");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#mracus').click(function(){
+          displayUserTweets("mracus");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#shawndrost').click(function(){
+          displayUserTweets("shawndrost");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#sharksforcheap').click(function(){
+          displayUserTweets("sharksforcheap");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
 
 
         function displayTweets() {
-
+          $body.html('');
+          clearInterval(runningTweet);
           var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
@@ -56,7 +82,7 @@
 
         function displayUserTweets(user) {
           $body.html('');
-          clearInterval(displayTweetId);
+          clearInterval(runningTweet);
           var index = streams.users[user].length - 1;
           while(index >= 0){
             var tweet = streams.users[user][index];
@@ -69,7 +95,7 @@
 
         displayTweets();
 
-        var displayTweetId = setInterval(displayTweets,3000);
+        runningTweet = setInterval(displayTweets,3000);
 
       });
 
