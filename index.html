@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Twittler by Evan Spiler</title>
     <script src="jquery.js"></script>
@@ -10,9 +10,15 @@
   </head>
   <body>
     <script src="js/bootstrap.min.js"></script>
+
+    <div class="pagination-centered">
+      <h1> Twittler! </h1>
+      <h3> by Evan Spiler </h3>
+      <br/><br/>
+    </div>
     
-    <div id="buttons">
-      <ul class="following nav nav-tabs">
+    <div id="buttons" class="row span2">
+      <ul class="following nav nav-pills nav-stacked">
         <li id="douglascalhoun"><a> @douglascalhoun </a></li>
         <li id="mracus"><a> @mracus </a></li>
         <li id="shawndrost"><a> @shawndrost </a></li>
@@ -20,7 +26,7 @@
       </ul>
     </div>
 
-    <div id="tweets"></div>
+    <div id="tweets" class="row-fluid offset3"></div>
 
 
     <script>
