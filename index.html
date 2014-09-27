@@ -7,28 +7,37 @@
     <script src="moment.js"></script>
     <script src="moment-with-locales.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet"/>
   </head>
   <body>
     <script src="js/bootstrap.min.js"></script>
 
-    <div class="pagination-centered">
-      <h1> Twittler! </h1>
-      <h3> by Evan Spiler </h3>
-      <br/><br/>
+    <div class="topbar">
+      <div class="content">
+        <h2> Twittler! </h2> 
+      </div>
     </div>
     
-    <div id="buttons" class="row span2">
-      <ul class="following nav nav-pills nav-stacked">
-        <li id="allFriends" class="active"><a> All Friends </a></li>
-        <li id="douglascalhoun"><a> @douglascalhoun </a></li>
-        <li id="mracus"><a> @mracus </a></li>
-        <li id="shawndrost"><a> @shawndrost </a></li>
-        <li id="sharksforcheap"><a> @sharksforcheap </a></li>
-      </ul>
+    <div class="left row offset1 span2">
+      <div class="post">
+        <input class="input" type ="text" placeholder="compose new tweetle"></input>
+        <button class="sendbutton">Post</button>
+      </div>
+      <div id="buttons" class="buttons">
+        <ul class="following nav nav-pills nav-stacked">
+          <li id="allFriends" class="active"><a> All Friends </a></li>
+          <li id="douglascalhoun"><a> @douglascalhoun </a></li>
+          <li id="mracus"><a> @mracus </a></li>
+          <li id="shawndrost"><a> @shawndrost </a></li>
+          <li id="sharksforcheap"><a> @sharksforcheap </a></li>
+        </ul>
+      </div>
     </div>
 
-    <div id="tweets" class="row-fluid offset3"></div>
-
+    <div class="row offset1 span6 tweets">
+      <p>Tweets</p>
+      <div id="tweets"></div>
+    </div>
 
     <script>
 

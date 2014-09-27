@@ -1,0 +1,51 @@
+body {
+	background-color: #C7EDFC;
+	font-family: arial;
+}
+
+
+h2 {
+	color: #1998FF;
+}
+
+
+.topbar {
+	margin: -10px auto 20px auto;
+	background: #ffffff;
+	height: 43px;
+	border-bottom: 1px solid #2E2E2E;
+
+}
+
+.post, .buttons, .tweets {
+	background: #ffffff;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.post, .buttons{
+	width: 200px;
+}
+
+.input {
+	width: 180px;
+	margin-left: 3px;
+}
+
+.buttons {
+	margin: 20px 0 0 0;
+}
+
+.content {
+	text-align: center;
+}
+
+.tweets p {
+	font-size: 20px;
+	color: #808080;
+}
+
+.tweets div, .tweets p {
+	border-bottom: 1px solid #CCCCCC;
+	padding: 5px;
+}
