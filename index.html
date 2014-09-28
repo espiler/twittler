@@ -35,7 +35,7 @@
     </div>
 
     <div class="row offset1 span6 tweets">
-      <p>Tweets</p>
+      <p>Tweetles</p>
       <div id="tweets"></div>
     </div>
 
@@ -47,6 +47,22 @@
         $body.html('');
         var runningTweet;
         var runningTweet2;
+
+        $('.input').on('keypress', function (event) {
+          if(event.which == '13'){
+            if ($('.input').val() != ""){
+              writeTweet($('.input').val())
+              $('.input').val("");
+            }
+          }
+        });
+        $('.sendbutton').click(function(){
+          if ($('.input').val() != ""){
+            writeTweet($('.input').val())
+            $('.input').val("");
+          }
+        });
+        
 
         $('#allFriends').click(function(){
           displayTweets();
@@ -108,6 +124,8 @@
         displayTweets();
 
       });
+
+    
 
     </script>
   </body>
