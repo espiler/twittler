@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Twittler by Evan Spiler</title>
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+    <script src="moment.js"></script>
+    <script src="moment-with-locales.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <script src="js/bootstrap.min.js"></script>
+
+    <div class="topbar">
+      <div class="content">
+        <h2> Twittler! </h2> 
+      </div>
+    </div>
+    
+    <div class="left row offset1 span2">
+      <div class="post">
+        <input class="input" type ="text" placeholder="compose new tweetle"></input>
+        <button class="sendbutton btn btn-default">Post</button>
+      </div>
+      <div id="buttons" class="buttons">
+        <ul class="following nav nav-pills nav-stacked">
+          <li id="allFriends" class="active"><a> All Friends </a></li>
+          <li id="TotallyMeForReal"><a> @TotallyMeForReal </a></li>
+          <li id="douglascalhoun"><a> @douglascalhoun </a></li>
+          <li id="mracus"><a> @mracus </a></li>
+          <li id="shawndrost"><a> @shawndrost </a></li>
+          <li id="sharksforcheap"><a> @sharksforcheap </a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row offset1 span6 tweets">
+      <p>Tweetles</p>
+      <div id="tweets"></div>
+    </div>
+
+    <div class="row span2">
+      <button class="update btn btn-default">Update Wall</button>
+    </div>
+
+    <script>
+
+      $(document).ready(function(){
+
+        var $body = $("#tweets");
+        $body.html('');
+        var runningTweet;
+        var runningTweet2;
+
+        $('.input').on('keypress', function (event) {
+          if(event.which == '13'){
+            if ($('.input').val() != ""){
+              writeTweet($('.input').val())
+              $('.input').val("");
+            }
+          }
+        });
+
+        $('.sendbutton').click(function(){
+          if ($('.input').val() != ""){
+            writeTweet($('.input').val())
+            $('.input').val("");
+          }
+        });
+
+        $('.update').click(function(){
+          if ($('#allFriends').hasClass("active")) {
+            displayTweets();
+          } else { 
+            var user = document.getElementsByClassName("active")[0].id;
+            displayUserTweets(user);
+          }
+        });
+
+        $('#allFriends').click(function(){
+          displayTweets();
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#douglascalhoun').click(function(){
+          displayUserTweets("douglascalhoun");
+          setInterval(displayUserTweets("douglascalhoun"), 3000);
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#mracus').click(function(){
+          displayUserTweets("mracus");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#shawndrost').click(function(){
+          displayUserTweets("shawndrost");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#sharksforcheap').click(function(){
+          displayUserTweets("sharksforcheap");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+        $('#TotallyMeForReal').click(function(){
+          displayUserTweets("TotallyMeForReal");
+          $("li").removeClass("active");
+          $(this).addClass("active");
+        });
+
+
+        function displayTweets() {
+          $body.html('');
+          clearInterval(runningTweet);
+          var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.html('<div class="time">' + moment(tweet.created_at).fromNow() + '</div> <div class="message"> @' + tweet.user + ": " + tweet.message + '</div>');
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+        }
+
+
+        function displayUserTweets(user) {
+          $body.html('');
+          clearInterval(runningTweet);
+          var index = streams.users[user].length - 1;
+          while(index >= 0){
+            var tweet = streams.users[user][index];
+            var $tweet = $('<div></div>');
+            $tweet.html('<div class="time">' + moment(tweet.created_at).fromNow() + '</div> <div class="message"> @' + tweet.user + ": " + tweet.message + '</div>');
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+        }
+
+        displayTweets();
+
+      });
+
+    
+
+    </script>
+  </body>
+</html>
